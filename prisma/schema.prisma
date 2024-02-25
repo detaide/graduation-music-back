@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tbDemo {
+  id Int @id @default(autoincrement())
+  name String
+  tel Int
+}
+
+model Login {
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  register_time BigInt
+  login_time  BigInt
+  update_time BigInt
+}
+
+model PlayTable {
+  id Int @id @default(autoincrement())
+  user_id BigInt
+  playtable_name String
+  create_time BigInt
+  update_time BigInt
+}
+
+model PlayList {
+  id Int @id @default(autoincrement())
+  playtable_id BigInt
+  music_id BigInt
+  create_time BigInt
+}
+
+model Contents {
+  id Int @id @default(autoincrement())
+  user_id BigInt
+  time BigInt
+  content String
+  father_id Int?
+  thumbs Int
+  type String
+  music_id BigInt
+}
